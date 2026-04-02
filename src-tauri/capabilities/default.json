@@ -1,0 +1,11 @@
+{
+  "$schema": "https://v2.tauri.app/v2/schemas/capability.schema.json",
+  "identifier": "default",
+  "description": "Default capabilities for RaccoonClaw",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "shell:allow-open",
+    "opener:default"
+  ]
+}
