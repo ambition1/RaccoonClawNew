@@ -58,10 +58,10 @@ RUN chmod +x /entrypoint.sh
 # 初始化标记文件目录
 RUN mkdir -p /app/.initialized
 
-# 非 root 用户运行
-RUN groupadd -r appuser && useradd -r -g appuser -d /app appuser \
-    && chown -R appuser:appuser /app
-USER appuser
+# ✅ 修改：移除用户创建和权限切换，直接以 root 身份运行
+# RUN groupadd -r appuser && useradd -r -g appuser -d /app appuser \
+#     && chown -R appuser:appuser /app
+# USER appuser
 
 EXPOSE 7891
 
