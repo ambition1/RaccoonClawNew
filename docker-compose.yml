@@ -22,9 +22,8 @@ services:
       redis:
         condition: service_healthy
     restart: unless-stopped
-    # 无需挂载 ~/.openclaw，容器内已自带 OpenClaw CLI 和自动初始化
-    # 如需持久化数据，可挂载:
-    # - ~/.openclaw:/home/appuser/.openclaw
+    volumes:
+      - ~/.openclaw:/home/appuser/.openclaw
 
 volumes:
   redis_data:
