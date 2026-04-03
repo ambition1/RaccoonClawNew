@@ -10,6 +10,7 @@ WORKDIR /build
 COPY Raccoon/frontend/package.json Raccoon/frontend/package-lock.json ./
 RUN npm ci --silent
 COPY Raccoon/frontend/ ./
+COPY shared/ ../shared/  
 RUN npx vite build --outDir /build/dist
 
 # Stage 2: Python 后端（零依赖宿主机）
