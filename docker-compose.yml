@@ -23,7 +23,7 @@ services:
         condition: service_healthy
     restart: unless-stopped
     volumes:
-      - ~/.openclaw:/home/appuser/.openclaw
+      - ~/.openclaw:/root/.openclaw
 
 volumes:
   redis_data:
