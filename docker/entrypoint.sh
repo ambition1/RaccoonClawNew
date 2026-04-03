@@ -4,7 +4,7 @@
 set -e
 
 DATA_DIR="/app/data"
-WORKSPACES_DIR="/home/appuser/.openclaw/workspaces"
+WORKSPACES_DIR="/root/.openclaw/workspaces"  # ✅ 改为 root 目录
 SHARED_DIR="/app/shared"
 INIT_MARKER="/app/.initialized"
 
@@ -41,7 +41,7 @@ workspace_ids = [
     'engineering', 'people_ops',
 ]
 for ws_id in workspace_ids:
-    ws_dir = pathlib.Path('/home/appuser/.openclaw') / 'workspace' / f'workspace-{ws_id}'
+    ws_dir = pathlib.Path('/root/.openclaw') / 'workspace' / f'workspace-{ws_id}'  # ✅ 改为 /root
     ws_dir.mkdir(parents=True, exist_ok=True)
 
     # 复制 shared 文件到 workspace
@@ -64,7 +64,7 @@ import pathlib, json, shutil
 
 demo_src = pathlib.Path('$DATA_DIR')
 tasks_src = demo_src / 'tasks_source.json'
-tasks_dst = pathlib.Path('/home/appuser/.openclaw/workspace/workspace-delivery_ops/data/tasks_source.json')
+tasks_dst = pathlib.Path('/root/.openclaw/workspace/workspace-delivery_ops/data/tasks_source.json')  # ✅ 改为 /root
 
 if tasks_src.exists() and not tasks_dst.exists():
     tasks_dst.parent.mkdir(parents=True, exist_ok=True)
@@ -80,6 +80,6 @@ else
     echo "[entrypoint] 已初始化，跳过 bootstrap（删除 $INIT_MARKER 可重新初始化）"
 fi
 
-# ── 3. 启动后端 ────────────────────────────────────────────────────────────
+# ── 3. 启动后端 ─────────────────────────────────────────────────────────
 echo "[entrypoint] 启动后端服务..."
 exec python3 Raccoon/backend/run_desktop_backend.py
